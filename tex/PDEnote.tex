@@ -1,0 +1,328 @@
+%!TEX program = xelatex
+\documentclass[cn,hazy,blue,14pt,screen]{elegantnote}
+\title{Partial Differential Equations}
+
+\author{\href{http://github.com/gkm0120}{\LARGE 戈孔明}}
+
+%\institute{湖南师范大学}
+
+\version{2.0}
+
+\date{\zhtoday}
+
+\usepackage{array}
+
+\begin{document}
+
+\maketitle
+
+\centerline{
+  \includegraphics[width=0.2\textwidth]{logo.jpg}
+}
+
+\leftline{\quad \quad 由于学识有限，本文缺点和错误在所难免，欢迎批评指正，如有雷同，纯属巧合。}
+
+\leftline{联系方式：\href{mailto:gkm0120@163.com}{gkm0120@163.com}}
+
+\newpage
+
+	\section{偏微分方程解答}
+	\begin{example}
+		介绍双曲抛物椭圆方程的形式与特点.
+		\begin{proof}[Solution]
+%			情形1. \\
+%			1. 弦振动(双曲)
+%				\[\begin{aligned}
+%				&\text{一维}: u_{tt}-a^2u_{xx}=f(x,t)\\
+%				&\text{二维}: u_{tt}-a^2(u_{xx}+u_{yy})=f(x,y,t)\\
+%				&\text{三维}: u_{tt}-a^2(u_{xx}+u_{yy}+u_{zz})=f(x,y,z,t)
+%				\end{aligned}
+%				\label{1.1} \tag{1.1}
+%				\]
+%			2. 热传导(抛物)
+%				\[\begin{aligned}
+%				&\text{一维}: u_{t}-a^2u_{xx}=f(x,t)\\
+%				&\text{二维}: u_{t}-a^2(u_{xx}+u_{yy})=f(x,y,t)\\
+%				&\text{三维}: u_{t}-a^2(u_{xx}+u_{yy}+u_{zz})=f(x,y,z,t)
+%				\end{aligned}
+%				\label{1.2} \tag{1.2}
+%				\]
+%			3.1 Laplace方程(椭圆)
+%				\[\begin{aligned}
+%				&\text{一维}: a^2u_{xx}=0\\
+%				&\text{二维}: a^2(u_{xx}+u_{yy})=0\\
+%				&\text{三维}: a^2(u_{xx}+u_{yy}+u_{zz})=0
+%				\end{aligned}
+%				\label{1.3} \tag{1.3}
+%				\]				
+%			3.2 Possion方程(椭圆)
+%				\[\begin{aligned}
+%				&\text{一维}: a^2u_{xx}=f(x)\\
+%				&\text{二维}: a^2(u_{xx}+u_{yy})=f(x,y)\\
+%				&\text{三维}: a^2(u_{xx}+u_{yy}+u_{zz})=f(x,y,z)
+%				\end{aligned}
+%				\label{1.4} \tag{1.4}
+%				\]
+%			情形2. \\
+			1. 一般的含有两个自变量的线性偏微分方程可写成如下形式：
+			\[au_{xx}+2bu_{xy}+cu_{yy}+du_x +eu_y +gu=f,\label{1.1} \tag{1.1}\]			
+			其中$a,b,c,d,e,g$和$f$都是$x,y$的已知函数，且在$xOy$平面上具有二阶连续偏导数.作可逆自变量变换
+			\[\begin{array}{l}
+			\left\{\begin{aligned}
+			&\xi=\varphi(x,y),\\
+			&\eta=\psi(x,y), 
+			\end{aligned}\right.
+			\end{array}
+			\label{1.2} \tag{1.2}
+			\] 
+			记Jacobi行列式
+			\[J=\left|
+			\begin{array}{cc}
+				\varphi(x) & \varphi(y) \\ 
+				\psi(x) & \psi(y)
+			\end{array} \right| \ne 0,
+			\]
+			则在可逆自变量变换\eqref{1.2}，方程\eqref{1.1}变为如下形式：
+			\[
+			Au_{xx}+Bu_{xy}+Cu_{yy}+Du_x+Eu_y+Gu=F,
+			\label{1.3} \tag{1.3}
+			\]
+			其中
+			\[
+			A(\xi ,\eta)=a^2\varphi^2_x+2b\varphi_x\varphi_y+c\varphi^2_y,
+			\label{1.4} \tag{1.4}
+			\]
+			\[
+			B(\xi ,\eta)=a\varphi_x \psi_x +b (\varphi_x\psi_y+\varphi_y \psi_x) +c\varphi_y \psi_y,
+			\label{1.5} \tag{1.5}
+			\]
+			\[
+			C(\xi ,\eta)=a^2\psi^2_x+2b\psi_x\psi_y+c\psi^2_y,
+			\label{1.6} \tag{1.6}
+			\]			
+			设$\Delta=b^2-ac$为\eqref{1.1}的判别式，$\Delta^{\prime}=B^2-AC$为\eqref{1.3}的判别式，计算知
+			\[
+			\Delta^{\prime}=J^2\Delta,
+			\label{1.7} \tag{1.7}
+			\]			
+			即在可逆自变量变换下，方程判别式符号保持不变.
+			
+			当$\Omega \in {\rm R}^2$是一区域，$(x_0,y_0)\in \Omega$时，\\
+			(1). 若$\Delta(x_0,y_0)>0$，则称方程\eqref{1.1}在点$(x_0,y_0)$处为\textbf{双曲型偏微分方程};\\
+			(2). 若$\Delta(x_0,y_0)=0$，则称方程\eqref{1.1}在点$(x_0,y_0)$处为\textbf{抛物偏微分方程};\\
+			(3). 若$\Delta(x_0,y_0)<0$，则称方程\eqref{1.1}在点$(x_0,y_0)$处为\textbf{椭圆型偏微分方程};\\
+			若在$\Omega$的每一点处，方程满足对应的$\Delta$判别式，则称\eqref{1.1}在$\Omega$内为对应的偏微分方程.
+			
+			2. 考虑主部具有常系数的多个自变量的二阶线性偏微分方程
+			\[
+			\sum_{i,j=1}^{n}a_{ij}u_{x_i x_j}+\sum_{i=1}^{n}u_{x_i}+c(x_1,\cdots,x_n)u=f(x_1,\cdots,x_n)
+			\label{2.8} \tag{2.8}
+			\]
+			其中$a_{ij}=a_{ji}$为常数.
+			作非奇异线性变换
+			\[\left(
+			\begin{array}{c}
+				\alpha_1 \\ 
+				\alpha_2 \\ 
+				\vdots \\ 
+				\alpha_n
+			\end{array}\right) 
+			= \textbf{B} \left(
+			\begin{array}{c}
+			\beta_1 \\ 
+			\beta_2 \\ 
+			\vdots \\ 
+			\beta_n
+			\end{array}\right)
+			\]
+			其中\textbf{B}是一个可逆矩阵，使得$\textbf{B}^\top 444\textbf{AB}=diag(\lambda_1,\cdots,\lambda_n)$.
+			则\eqref{2.8}可化为
+			\[
+			\sum_{i=1}^{n}\lambda_{i}u_{y_i y_i}+\sum_{i=1}^{n}B_i(y_1,\cdots,y_n)u_{y_i}+C(y_1,\cdots,y_n)u=F(y_1,\cdots,y_n)
+			\label{2.9} \tag{2.9}
+			\]
+			称\eqref{2.9}为\eqref{2.8}的\textbf{标准型}.
+			
+			若\eqref{2.9}中的$n$个系数$\lambda_i(i=1,\cdots,n)$全是1或-1，则称\eqref{2.8}为\textbf{椭圆型偏微分方程}；若\eqref{2.9}中的$n$个系数$\lambda_i(i=1,\cdots,n)$中有一个为1，$n-1$个为-1或一个为-1， $n-1$个为1，则称\eqref{2.8}为\textbf{双曲型偏微分方程}；若\eqref{2.9}中的$n$个系数$\lambda_i(i=1,\cdots,n)$全不为零，但取1或-1的个数超过1，则称\eqref{2.8}为\textbf{超双曲型偏微分方程}；若\eqref{2.9}中的$n$个系数$\lambda_i(i=1,\cdots,n)$中有一个为零，其余全是1或-1，则称\eqref{2.8}为\textbf{抛物型偏微分方程}；
+
+		\end{proof}
+	\end{example}
+
+	\begin{example}
+		用分离变量法求初边值问题.
+		\[\begin{array}{l}
+		\left\{\begin{aligned}
+		&u_{tt}-a^2u_{xx}=0, \quad 0< x < l,\quad t>0,\\
+		&\left.u\right|_{t=0}=\mathrm{cos}\frac{\pi}{2}x,\quad 
+		\left.u_t\right|_{t=0}=\mathrm{cos}\frac{3\pi}{2}x,\quad 0\le x\le l, \\
+		&\left.u\right|_{x=0}=0,\quad \left.u\right|_{x=l}=0,\quad t\ge 0.
+		\end{aligned}\right.
+		\end{array}\] 
+	\begin{proof}[Solution]
+		设解为$u(x,t)=X(x)T(t)$，则
+		$$T^{\prime \prime}X(x)-a^2X^{\prime \prime}(x)T(t)=0,$$
+		于是
+		$$\frac{X^{\prime \prime}}{X(x)}=\frac{T^{\prime 
+				\prime}}{a^2T(t)}=-\lambda. \quad \text{(Constant)}$$
+		即
+		\begin{align}
+		X^{\prime \prime}(x)+\lambda X(x)=0,\label{2-1},\\
+		T^{\prime \prime}(x)+\lambda a^2T(t)=0,\label{2-2}
+		\end{align}
+		由边界条件可知
+		$$X(0)T(t)=0,\quad X(l)T(t)=0.$$
+		于是
+		\begin{align}
+		X(0)=X(l)=0,\label{2-3}
+		\end{align}
+		下面解特征值问题\eqref{2-1}, \eqref{2-2},\\
+		情形1.\quad $\lambda<0$，则\eqref{2-1}的通解为：
+		\begin{equation*}
+		X(x)=c_1e^{\sqrt{-\lambda}x}+c_2e^{-\sqrt{-\lambda}x},
+		\end{equation*}
+		其中$c_1,c_2$是任意常数，要使它满足边界条件\(X(0)=X(l)=0\)，就必须有
+		\begin{equation*}
+		\left\{\begin{aligned}
+		&c_1+c_2=0,\\
+		&c_1e^{\sqrt{-\lambda}t}+c_2e^{-\sqrt{-\lambda}t}=0. &\nonumber
+		\end{aligned}\right.
+		\end{equation*}
+		由于其系数行列式\\
+		\begin{equation*}
+		\begin{vmatrix}
+		1 & 1\\
+		e^{\sqrt{-\lambda}t} & e^{-\sqrt{-\lambda}t}
+		\end{vmatrix}\ne 0
+		\end{equation*}
+		因此$c_1$和$c_2$必须同时为零，从而$X(x)\equiv 0$.\quad 
+		此时特征值问题\eqref{2-1},\eqref{2-3}只有平凡解.\\
+		情形2. \quad $\lambda=0$，方程\(X^{\prime \prime}(x)+\lambda X(x)=0\)的通解为
+		\begin{equation*}
+		X(x)=c_1+c_2x,
+		\end{equation*}
+		由边界条件\(X(0)=X(l)=0\)，得
+		\begin{equation*}
+		c_1=0,c_1+c_2l=0. 
+		\end{equation*}
+		所以$c_1=c_2=0$，从而$X(x)\equiv 0$.\quad 此时该特征值问题\eqref{2-1},\eqref{2-3}
+		只有
+		平凡解.\\
+		
+		情形3.\quad $\lambda>0$，则\eqref{2-1}的通解为：
+		$$X(x)=c_1\mathrm{cos}\sqrt{\lambda}x+c_2\mathrm{sin}\sqrt{\lambda}x.$$
+		代入边界条件得
+		$$c_1=0,\quad c_2\mathrm{sin}\sqrt{\lambda}l=0,$$
+		于是特征值为
+		$$\lambda_k=\frac{k^2\pi^2}{l^2},\quad k=0,1,\cdots$$
+		对应的特征函数为
+		$$X_k(x)=a_k\mathrm{sin}\frac{k\pi}{l} x,\quad k=0,1,\cdots$$
+		对特征值$\lambda_k$，解方程\eqref{2-2}得：
+		$$T_k(t)=b_k\mathrm{cos}\frac{k\pi}{l} at+c_k 
+		\mathrm{sin}\frac{k\pi}{l} at.$$
+		于是
+		$$u_k(x,t)=\left(A_k\mathrm{cos}\frac{k\pi}{l} at
+		+B_k\mathrm{sin}\frac{k\pi}{l} at\right)\mathrm{cos}\frac{k\pi}{l} 
+		x,\quad k=0,1,\cdots$$
+		作级数
+		$$u(x,t)=\sum_{k=0}^{\infty}\left(A_k\mathrm{cos}\frac{k\pi}{l} at
+		+B_k\mathrm{sin}\frac{k\pi}{l} at\right)\mathrm{cos}\frac{k\pi}{l} 
+		x$$
+		代入初始条件，得
+		$$\sum_{k=0}^{\infty}A_k\mathrm{cos}\frac{k\pi}{l} 
+		x=\mathrm{cos}\frac{\pi}{2}x,\quad \sum_{k=0}^{\infty}B_k\mathrm{cos}\frac{k\pi a}{l} x=\mathrm{cos}\frac{3\pi}{2}x.$$	
+		$$\Rightarrow A_1=1,A_0=A_2=\cdots=0,\quad B_0=B_1=B_2=0,B_3=\frac{2}{3\pi 
+			a},B_4=B_5=\cdots=0.$$
+		所以解为：
+		$$u(x,t)=\mathrm{cos}\frac{\pi at}{2}\mathrm{cos}\frac{\pi 
+			x}{2}+\frac{2}{3\pi a}\mathrm{sin}\frac{3\pi at}{2}\mathrm{cos}\frac{3\pi 
+			x}{2}.
+		$$
+	\end{proof}
+	\end{example}
+		
+	\begin{example}
+		求解下列定解问题
+		\begin{equation*}
+		\left\{\begin{aligned}
+			&u_{xx}+2cosxu_{xy}-sin^{2}xu_{yy}=0, \quad -\infty<x<\infty, 
+			y>sinx,  \\
+			&\left.u\right|_{y=sinx}=\varphi(x), 
+			\left.u_{y}\right|_{y=sinx}=\psi(x), \quad -\infty<x<\infty \\
+		\end{aligned}\right.
+		\end{equation*}
+		\begin{proof}[Solution]
+			特征方程为
+			$$0=dy^2-2\mathrm{cos}xdxdy-\mathrm{sin}^2xdx^2
+			=[dy-(\mathrm{cos}x-1)dx][dy-(\mathrm{cos}x+1)dx]$$
+			则
+			$$y-\mathrm{sin}x+x=C_1\text{或}y-\mathrm{sin}x-x=C_2.$$
+			作自变量变换
+			$$\xi=y-\mathrm{sin}x+x\text{或}\eta=y-\mathrm{sin}x-x,$$
+			则原方程化为
+			$$u_{\xi\eta}=0\Rightarrow 
+			u=f(\xi)+g(\eta)=f(y-\mathrm{sin}x+x)+g(y-\mathrm{sin}x-x).$$
+			又由初始条件，
+			$$f(x)+g(-x)=\varphi(x),$$
+			$$f^{\prime}(x)+g^{\prime}(-x)=\phi(x),$$
+			$$f(x)-g(-x)=\int_{0}^{x}\phi(t)dt+C,$$
+			$$f(x)=\frac{1}{2}[\varphi(x)+\int_{0}^{x}\phi(t)dt+C],$$
+			$$g(x)=\frac{1}{2}[\varphi(-x)+\int_{-x}^{0}\phi(t)dt-C],$$
+			$$u(x,y)=\frac{1}{2}[\varphi(y-\mathrm{sin}x+x)
+			+\varphi(-y+\mathrm{sin}x+x)]+
+			\frac{1}{2}\int_{-y+\mathrm{sin}x+x}^{y-\mathrm{sin}x+x}\phi(t)dt.$$
+		\end{proof}
+	\end{example}
+		
+	\begin{example}
+		求定积分，不详（可能涉及Green函数和Fourier变换）
+	\end{example}
+
+	\begin{proof}[Solution]
+	部分指数函数积分表
+	$$\int e^{cx} dx=\frac{1}{c}e^{cx},\quad \int a^{cx} dx=\frac{1}{cIna}a^{cx} \quad (a>0,a \ne 1)$$
+	$$\int xe^{cx}dx=\frac{e^{cx}}{c^2}(cx-1),\quad \int x^2e^{cx}dx=e^{cx}\left(\frac{x^2}{c}-\frac{2x}{c^2}+\frac{2}{c^3}\right)$$
+	$$\int x^ne^{cx}dx=\frac{1}{c}x^ne^{cx}-\frac{n}{c}\int x^{n-1}e^{cx}dx,\quad 
+	\int xe^{cx^2}dx=\frac{1}{2c}e^{cx^2}$$
+	$$\int e^{cx}sinbx dx=\frac{e^{cx}}{c^2+b^2}(c sinbx-bcosbx),\quad \int e^{cx}cosbx dx=\frac{e^{cx}}{c^2+b^2}(c cosbx+bsinbx)$$
+	\end{proof}
+	
+	\begin{example}
+		求方程
+		\begin{equation}\label{1-4}
+		x^2u_{xx}-2xyu_{xy}+y^2u_{yy}+xu_x+yu_y=0
+		\end{equation}
+		的通解.
+	\end{example}
+	\begin{proof}[Solution]
+		特征方程为
+		$$x^2dy^2+2xy dxdy+y^2dx^2=(xdy+ydx)(xdy+ydx)=0,$$
+		则
+		$$\frac{dy}{dx}=-\frac{y}{x},$$
+		进而$$xy=C.\quad (C \text{为常数})$$
+		令$\xi=xy,\eta=y$，则
+		$$u_x=yu_\xi,\quad u_y=xu_\xi+u_\eta,\quad u_{xy}=u_{\xi} + xyu_{\eta \eta}+yu_{\eta}.$$
+		$$u_{xx}=y^2u_{\xi \xi},\quad u_{yy}=x^2u_{\xi \xi}+2xu_{\xi \eta}+u_{\eta \eta},$$
+		代入\eqref{1-4}有
+		$$y^2u_{\eta \eta}+yu_\eta=0,$$
+		情形1. 当$y=0$时，代入方程得：
+		$$x^2u_{xx}+xu_x=0,$$
+		则$$x=0 \, \text{或} \, xu_{xx}+u_x=0.$$
+		令$w=u_x$，则$xw_x+w=0$，解得
+		$$\frac{w_x}{w}=-\frac{1}{x} \Rightarrow w=\frac{1}{x}\theta_1(y),$$
+		其中$\theta_1(y)$是任意二阶连续可导函数.
+		即$$u_x=\frac{1}{x}\theta_1(y) \Rightarrow u(x,y)=\theta_1(y) {\rm In} x+\theta_2(y),$$
+		其中$\theta_2(y)$也是任意二阶连续可导函数.
+		
+		情形2. 当$y\ne 0$时，代入方程得：
+		$$yu_{\eta \eta}+u_{\eta}=0,$$
+		令$w=u_\eta$，则$\eta w_\eta +w=0$，解得
+		$$\frac{w_x}{w}=-\frac{1}{\eta} \Rightarrow w=\frac{1}{\eta}\theta_1(\xi),$$
+		其中$\theta_1(\xi)$是任意二阶连续可导函数.
+		即$$u_\eta=\frac{1}{\eta}\theta_1(\xi) \Rightarrow u(\xi,\eta)=\theta_1(\xi) {\rm In} \eta+\theta_2(\xi),$$
+		其中$\theta_2(\xi)$也是任意二阶连续可导函数，则
+		$$u(x,y)=\theta_1(xy){\rm In}y+\theta_2(xy).$$
+		\end{proof}
+		
+		
+
+\end{document}
