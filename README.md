@@ -1,1 +1,1 @@
-一些杂七杂八的笔记
+some notes in study
